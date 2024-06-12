@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 //Motor de Plantilla
 app.engine('hbs', engine({
-    extName: '.hbs',
+    extname: '.hbs',
     
 }));
 app.set('view engine', 'hbs');

@@ -1,3 +1,41 @@
 export const home = (req, res) => {
-    res.render('home')
+    res.render('home',{
+        title: 'Home Page',
+        
+    })
+}
+
+export const about = (req, res) => {
+    res.render('about',{
+        title: 'About Page',
+        
+    })
+}
+
+export const contact = (req, res) => {
+    res.render('contact',{
+        title: 'Contact Page',
+        
+    })
+}
+
+export const loginForm = (req, res) => {
+    res.render('login',{
+        title: 'Login Page',
+        
+    })
+}
+
+export const registerForm = (req, res) => {
+    res.render('register',{
+        title: 'Register Page',
+        
+    })
+}
+
+export const dashboard = (req, res) => {
+    res.render('dashboard',{
+        title: 'Dashboard Page',
+        
+    })
 }

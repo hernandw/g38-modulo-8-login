@@ -1,0 +1,44 @@
+<h2 class="text-center">Inicia Sesión</h2>
+
+<div class="col-md-4 mx-auto mt-4">
+  <form action="/login" method="post">
+
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        placeholder="ej: 0Hl2d@example.com"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        placeholder="********"
+      />
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+
+      <a
+        class="text-decoration-none text-muted mb-3"
+        href="/forgot-password"
+      >¿Olvidaste tu contraseña?</a>
+      <a class="text-decoration-none text-muted mb-3" href="/register">¿No
+        tienes cuenta? Registrate
+      </a>
+
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit">Login</button>
+
+  </form>
+
+</div>
