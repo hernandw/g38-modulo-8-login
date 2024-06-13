@@ -16,3 +16,21 @@ export const addUserQuery = async (name, email, password) => {
       console.log("Error code: ", error.code, "Error message: ", error.message);
     }
   };
+
+
+  export const verifyUserQuery = async (email) => {
+    try {
+      const sql = {
+        text: "SELECT * FROM users WHERE email = $1",
+        values: [email],
+      };
+      const response = await pool.query(sql);
+      if (response.rowCount > 0) {
+        return response.rows[0];
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log("Error code: ", error.code, "Error message: ", error.message);
+    }
+  };

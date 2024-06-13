@@ -1,4 +1,5 @@
-import { addUserQuery } from "../models/userQueries.js";
+import { addUserQuery, verifyUserQuery } from "../models/userQueries.js";
+import bcrypt from 'bcrypt';
 
 export const home = (req, res) => {
   res.render("home", {
@@ -40,11 +41,36 @@ export const dashboard = (req, res) => {
 export const addUser = async (req, res) => {
     try {
       const { name, email, password, confirmPassword } = req.body;
+      const passwordHash = await bcrypt.hash(password, 10);
    
       console.log(req.body);
   
-      await addUserQuery(name, email, password);
+      await addUserQuery(name, email, passwordHash);
       res.status(201).redirect("/login");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  };
+
+  export const login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const result = await verifyUserQuery(email);
+      console.log(result);
+      if (result) {
+        const passwordMatch = await bcrypt.compare(password, result.password);
+        console.log('passwordMatch',passwordMatch);
+        if (passwordMatch) {
+          res.status(200).render("dashboard", {
+            title: "Dashboard Page",
+            user: result,
+          });
+        } else {
+          res.status(401).send("Contraseña incorrecta");
+        }
+      } else {
+        res.status(401).send("Usuario no encontrado");
+      }
     } catch (error) {
       res.status(500).send(error.message);
     }
